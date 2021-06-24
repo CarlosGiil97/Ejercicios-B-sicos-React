@@ -1,10 +1,12 @@
 
 import './App.css';
+import CrudApp from './components/CrudApp';
 
 function App() {
   return (
     <div>
-      <h2>CRUD APP</h2>
+      <h2>Ejercicios React Básicos</h2>
+      <CrudApp />
     </div>
   );
 }
