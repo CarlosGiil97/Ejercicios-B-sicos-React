@@ -1,6 +1,7 @@
 //he usado el atajo rafce para crear automaticamente el import y el const CrudApp
-import React from 'react';
+import React,{useState} from 'react';
 import CrudForm from './CrudForm';
+import CrudTable from './CrudTable';
 
 
 //esto va a simular una base de datos , que en este caso va a ser un objeto
@@ -37,14 +38,12 @@ const initialDb = [
 
 
 const CrudApp = () => {
+    const [db, setDb] = useState(initialDb)
     return (
         <>
             <h2>CRUD APP</h2>
             <CrudForm />
-            <table>
-                    
-            </table>
-
+            <CrudTable data={db}/>
             
         </>
     )
