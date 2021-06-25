@@ -35,15 +35,36 @@ const initialDb = [
     
 ]
 
+//funcion que se encargará de insertar nueva info en la BD
+const createData = (data) => {
 
+}
+//funcion que va a actualizar la info de la BD
+const updateData = (data) => {
 
+}
+
+//funcion que va a eliminar info de la BD
+const deleteData = (id) => {
+
+}
 const CrudApp = () => {
-    const [db, setDb] = useState(initialDb)
+    const [db, setDb] = useState(initialDb);
+    const [dataToEdit, setDataToEdit] = useState(null);
     return (
         <>
             <h2>CRUD APP</h2>
-            <CrudForm />
-            <CrudTable data={db}/>
+            <CrudForm 
+            createData={createData} 
+            updateData={updateData} 
+            dataToEdit={dataToEdit} 
+            setDataToEdit={setDataToEdit}/>
+
+            <CrudTable 
+            data={db}
+            setDataToEdit={setDataToEdit}
+            deleteData={deleteData} 
+            />
             
         </>
     )

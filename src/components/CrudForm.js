@@ -13,7 +13,10 @@ const CrudForm = () => {
     const [form, setForm] = useState({initialForm});
     //los 3 eventos necesasrios para el formulario
     const handleChange = (e) => {
-
+        setForm({
+            ...form,
+            [e.target.name]:e.target.value,
+        });
     }
 
     const handleSubmit = (e) => {
