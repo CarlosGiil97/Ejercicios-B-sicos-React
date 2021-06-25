@@ -15,6 +15,7 @@ const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
     useEffect(() => {
         if(dataToEdit){
             setForm(dataToEdit);
+
         }else{
             setForm(initialForm);
         }
@@ -55,7 +56,8 @@ const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
 
     return (
         <div>
-            <h3>Agregar</h3>
+            <h3>{dataToEdit ? "Modificar" : "Agregar"}</h3>
+            
             <form onSubmit={handleSubmit}>
                 <input type="text" name="name" placeholder="Nombre" value={form.name} onChange={handleChange}/>
                 <input type="text" name="dorsal" placeholder="Dorsal" value={form.dorsal} onChange={handleChange}/>
