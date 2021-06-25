@@ -35,10 +35,18 @@ const initialDb = [
     
 ]
 
-//funcion que se encargará de insertar nueva info en la BD
-const createData = (data) => {
 
-}
+const CrudApp = () => {
+    const [db, setDb] = useState(initialDb);
+    const [dataToEdit, setDataToEdit] = useState(null);
+
+        //funcion que se encargará de insertar nueva info en la BD
+    const createData = (data) => {
+            //manera de generar un ID para el componente único
+            data.id = Date.now();
+            setDb([...db,data]);
+            
+    }
 //funcion que va a actualizar la info de la BD
 const updateData = (data) => {
 
@@ -48,9 +56,6 @@ const updateData = (data) => {
 const deleteData = (id) => {
 
 }
-const CrudApp = () => {
-    const [db, setDb] = useState(initialDb);
-    const [dataToEdit, setDataToEdit] = useState(null);
     return (
         <>
             <h2>CRUD APP</h2>
