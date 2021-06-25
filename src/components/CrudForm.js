@@ -20,7 +20,12 @@ const CrudForm = () => {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
 
+        if(!form.name || !form.dorsal){
+            alert("Datos incompletos");
+            return;
+        }
     }
 
     const handleReset = (e) => {
