@@ -49,7 +49,8 @@ const CrudApp = () => {
     }
 //funcion que va a actualizar la info de la BD
 const updateData = (data) => {
-
+    let newData = db.map(el => el.id === data.id ? data : el);
+    setDb(newData);
 }
 
 //funcion que va a eliminar info de la BD

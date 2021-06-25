@@ -11,6 +11,17 @@ const initialForm = {
 const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
 
     const [form, setForm] = useState({initialForm});
+
+    useEffect(() => {
+        if(dataToEdit){
+            setForm(dataToEdit);
+        }else{
+            setForm(initialForm);
+        }
+    },
+    [dataToEdit]
+    )
+
     //los 3 eventos necesasrios para el formulario
     const handleChange = (e) => {
         setForm({
