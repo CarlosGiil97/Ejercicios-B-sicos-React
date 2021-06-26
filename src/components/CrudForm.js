@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 
-
+let color = "red";
 //se declaran como arrancan los values del form
 const initialForm = {
     name:"",
@@ -56,6 +56,7 @@ const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
 
     return (
         <div>
+            
             <h3>{dataToEdit ? "Modificar" : "Agregar"}</h3>
             
             <form onSubmit={handleSubmit}>

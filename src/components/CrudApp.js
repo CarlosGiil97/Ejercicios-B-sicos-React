@@ -55,7 +55,17 @@ const updateData = (data) => {
 
 //funcion que va a eliminar info de la BD
 const deleteData = (id) => {
-
+    let isDelete = window.confirm (`¿Estas seguro de eliminar el registro con el id '${id}'?`)
+    console.log(isDelete);
+   
+    if(isDelete){
+        console.log('DB ANTIGUA:')
+        console.log(db);
+        let newData = db.filter((el) => el.id !== id);
+        setDb(newData);
+        console.log('DB NUEVA:')
+        console.log(db);
+    }
 }
     return (
         <>
