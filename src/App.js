@@ -8,6 +8,7 @@ function App() {
     <div>
       <h2>Ejercicios React Básicos</h2>
       <CrudApp />
+      <hr />
     </div>
   );
 }

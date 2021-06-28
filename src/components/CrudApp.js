@@ -70,6 +70,7 @@ const deleteData = (id) => {
     return (
         <>
             <h2>CRUD APP</h2>
+            <article className="grid-1-2">
             <CrudForm 
             createData={createData} 
             updateData={updateData} 
@@ -81,6 +82,7 @@ const deleteData = (id) => {
             setDataToEdit={setDataToEdit}
             deleteData={deleteData} 
             />
+            </article>
             
         </>
     )
