@@ -24,16 +24,41 @@ export const helpHttp = () => {
         console.log(options)
 
         //si en 3 segundos el servidor no ha respondido
-        setTimeout(() => controller.abort(),3000)
+        setTimeout(() => controller.abort(),3000);
+
+        
+
+        return fetch(endpoint,options).then(res=> 
+            res.ok 
+            ? res.json()
+            :Promise.reject({
+                err:true,
+                status:res.status || "00",
+                statusText:res.statusText || "Ocurrió un error"
+            })
+        ).catch(err=>err)
     }
 
-    const get = () => {}
+    //CONSULTA A LA BBDD
+    const get = (url,options = {}) => customFetch(url,options);
 
-    const post  = () => {}
+    //INSERT A LA BBDD
+    const post  = (url,options = {}) => {
+        options.method = "POST";
+        return customFetch(url,options);
+    }
 
-    const put  = () => {}
+    //UPDATE A LA BBDD
+    const put  = (url,options = {}) => {
+        options.method = "PUT";
+        return customFetch(url,options);
+    }
 
-    const del  = () => {}
+    //DELETE A LA BBDD
+    const del  = (url,options = {}) => {
+        options.method = "DELETE";
+        return customFetch(url,options);
+    }
 
     return{
         get,post,put,del
