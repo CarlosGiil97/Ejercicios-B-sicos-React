@@ -20,6 +20,11 @@ export const helpHttp = () => {
 
         //si el options body viene vacio se elimina , ya que no se puede enviar vacio al hacer peticiones
         if(!options.body) delete options.body;
+
+        console.log(options)
+
+        //si en 3 segundos el servidor no ha respondido
+        setTimeout(() => controller.abort(),3000)
     }
 
     const get = () => {}
