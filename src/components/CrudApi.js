@@ -1,7 +1,10 @@
 //he usado el atajo rafce para crear automaticamente el import y el const CrudApi
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import CrudForm from './CrudForm';
 import CrudTable from './CrudTable';
+import { helpHttp } from '../helpers/helpHttp';
+import Loader from './Loader';
+import Message from './Message';
 
 
 
@@ -9,6 +12,27 @@ import CrudTable from './CrudTable';
 const CrudApi = () => {
     const [db, setDb] = useState([]);
     const [dataToEdit, setDataToEdit] = useState(null);
+
+    
+    let api=helpHttp();
+    let url ="http://localhost:5000/futbol";
+
+    //USEeFFECT PARA LA PRIMERA CARGA DE DATOS
+    useEffect(() => {
+      api.get(url).then((res) => {
+          
+        if(!res.err){
+            setDb(res);
+        } else{
+            setDb(null);
+        }
+        
+          //console.log(db);
+      });
+      
+    }, []);
+
+    
 
         //funcion que se encargará de insertar nueva info en la BD
     const createData = (data) => {
@@ -39,7 +63,7 @@ const deleteData = (id) => {
 }
     return (
         <>
-            <h2>CRUD APP</h2>
+            <h2>CRUD API</h2>
             <article className="grid-1-2">
             <CrudForm 
             createData={createData} 
@@ -52,6 +76,7 @@ const deleteData = (id) => {
             setDataToEdit={setDataToEdit}
             deleteData={deleteData} 
             />
+            <Loader /><Message />
             </article>
             
         </>

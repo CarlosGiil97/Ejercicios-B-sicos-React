@@ -29,6 +29,16 @@
             "id":6,
             "name":"Darwin Machis",
             "dorsal":"11"
+        },
+        {
+            "id":7,
+            "name":"Luis Milla",
+            "dorsal":"5"
+        },
+        {
+            "id":8,
+            "name":"Domingos Duarte",
+            "dorsal":"22"
         }
     ]
 }
