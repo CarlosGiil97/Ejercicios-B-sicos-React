@@ -17,13 +17,13 @@ const CrudApi = () => {
     const [loading, setLoading] = useState(false);
 
     
-    //let api=helpHttp();
+    let api=helpHttp();
     let url ="http://localhost:5000/futbol";
 
     //USEeFFECT PARA LA PRIMERA CARGA DE DATOS
     useEffect(() => {
         setLoading(true);
-        helpHttp().get(url).then((res) => {
+        api.get(url).then((res) => {
           
         if(!res.err){
             setDb(res);
@@ -44,7 +44,18 @@ const CrudApi = () => {
     const createData = (data) => {
             //manera de generar un ID para el componente único
             data.id = Date.now();
-            setDb([...db,data]);
+
+            //con esta linea de codigo hace el insert en el objeto con el método POST
+            api.post(url,{body:data, headers:{"content-type":"application/json"}}).then((res) => {
+                console.log(res);
+                if(!res.err){
+                    setDb([...db,res]);
+                }else{
+                    setError(res);
+                }
+            });
+            
+            
             
     }
 //funcion que va a actualizar la info de la BD
