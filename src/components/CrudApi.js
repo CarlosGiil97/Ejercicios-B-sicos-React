@@ -9,28 +9,34 @@ import Message from './Message';
 
 
 
+
 const CrudApi = () => {
-    const [db, setDb] = useState([]);
+    const [db, setDb] = useState(null);
     const [dataToEdit, setDataToEdit] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     
-    let api=helpHttp();
+    //let api=helpHttp();
     let url ="http://localhost:5000/futbol";
 
     //USEeFFECT PARA LA PRIMERA CARGA DE DATOS
     useEffect(() => {
-      api.get(url).then((res) => {
+        setLoading(true);
+        helpHttp().get(url).then((res) => {
           
         if(!res.err){
             setDb(res);
+            setError(null);
         } else{
             setDb(null);
+            setError(res);
         }
-        
-          //console.log(db);
+        setLoading(false);
+        console.log(res);
       });
       
-    }, []);
+    }, [url]);
 
     
 
@@ -53,12 +59,8 @@ const deleteData = (id) => {
     console.log(isDelete);
    
     if(isDelete){
-        console.log('DB ANTIGUA:')
-        console.log(db);
         let newData = db.filter((el) => el.id !== id);
         setDb(newData);
-        console.log('DB NUEVA:')
-        console.log(db);
     }
 }
     return (
@@ -71,12 +73,21 @@ const deleteData = (id) => {
             dataToEdit={dataToEdit} 
             setDataToEdit={setDataToEdit}/>
 
-            <CrudTable 
+            {/* si existe la variable Loading , carga el componente Loader */}
+            {loading && <Loader />}
+            {/* si existe error muestra componente mensaje */}
+            {error && <Message msg={
+                `Error: ${error.status} : ${error.statusText}`
+                
+            } bgColor="#dc3545" />}
+
+            {db && <CrudTable 
             data={db}
             setDataToEdit={setDataToEdit}
             deleteData={deleteData} 
-            />
-            <Loader /><Message />
+            />}
+            
+            {/* <Loader /><Message /> */}
             </article>
             
         </>
